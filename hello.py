@@ -7,4 +7,6 @@ def index():
     return redirect("/contacts")
 #    return "Hello World!"
 
+@app.route("/contacts")
+
 
