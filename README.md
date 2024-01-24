@@ -5,6 +5,9 @@ This is a mini-project to improve my knowledge of learning on how to use it.
 I'm working to the chapters as set out in the excellent https://hypermedia.systems/ and plan to structured this code into
 branches that correspond well with the chapters there. 
 
+In the helpers.py file there is a create_random_contacts function to speed up getting contacts into the db at the start.
+Run this in the flask shell. 
+
 Completed branches:
 - web_1.0_application. This is the application in it pre-htmx state. 
 
