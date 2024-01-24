@@ -1,18 +1,1 @@
-[
-  {
-    "id": 2,
-    "first": "Michael ",
-    "last": "Clarke",
-    "phone": "",
-    "email": "mc@gmail.com",
-    "errors": {}
-  },
-  {
-    "id": 3,
-    "first": "jonny",
-    "last": "begood",
-    "phone": "",
-    "email": "Jonbg@y.uk",
-    "errors": {}
-  }
-]
+[]
