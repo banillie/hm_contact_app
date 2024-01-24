@@ -5,6 +5,7 @@ from flask import (
 from contacts_model import Contact, Archiver
 # import time
 
+Contact.load_db()
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
@@ -15,8 +16,6 @@ def index():
 
 @app.route("/contacts")
 def contacts():
-    # I'm having to load the db - need to fix.
-    Contact.load_db()
     search = request.args.get("q")
     if search is not None:
         contacts_set = Contact.search(search)
