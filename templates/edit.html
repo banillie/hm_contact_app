@@ -34,9 +34,7 @@
         </fieldset>
     </form>
 
-    <form action="/contacts/{{ contact.id }}/delete" method="post">
-        <button>Delete Contact</button>
-    </form>
+    <button hx-delete="/contacts/{{ contact.id }}" hx-target="body">Delete Contact</button>
     <p>
         <a href="/contacts">Back</a>
     </p>

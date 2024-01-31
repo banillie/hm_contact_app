@@ -14,7 +14,7 @@ def index():
     return redirect("/contacts")
 
 
-@app.route("/contacts")
+@app.route("/contacts", methods=["GET", "POST"])
 def contacts():
     search = request.args.get("q")
     if search is not None:
@@ -63,9 +63,9 @@ def contacts_edit_post(contact_id=0):
         return render_template("edit.html", contact=c)
     
     
-@app.route("/contacts/<contact_id>/delete", methods=["POST"])
+@app.route("/contacts/<contact_id>", methods=["DELETE"])
 def contacts_delete(contact_id=0):
     contact = Contact.find(contact_id)
     contact.delete()
     flash("Deleted Contact!")
-    return redirect("/contacts")
+    return redirect("/contacts", 303)
