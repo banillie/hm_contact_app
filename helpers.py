@@ -21,3 +21,7 @@ def create_random_contacts(num_contacts=20):
             first=first_name, last=last_name, phone=phone_number, email=email
         )
         contact.save()  # Save the contact to the database
+
+
+if __name__ == "__main__":
+    create_random_contacts()
