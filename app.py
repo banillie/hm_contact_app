@@ -2,7 +2,7 @@ import secrets
 from flask import (
     Flask, redirect, render_template, request, flash, jsonify, send_file
 )
-from contacts_model import Contact, Archiver
+from contacts_model import Contact 
 # import time
 
 Contact.load_db()
