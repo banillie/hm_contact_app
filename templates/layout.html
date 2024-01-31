@@ -3,9 +3,9 @@
 <head>
     <title>Contact App</title>
     <link rel="stylesheet" href="https://unpkg.com/missing.css@1.1.1">
-
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
-<body>
+<body hx-boost="true">
 <main>
     <header>
         <h1>
@@ -14,9 +14,9 @@
         </h1>
     </header>
     {% for message in get_flashed_messages() %}
-      <div class="flash">{{ message }}</div>
+        <div class="flash">{{ message }}</div>
     {% endfor %}
     {% block content %}{% endblock %}
-</main 
+</main
 </body>
 </html>
