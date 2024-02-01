@@ -10,6 +10,7 @@ Run this in the flask shell.
 
 Completed branches:
 - web_1.0_application. This is the application in it pre-htmx state. 
+- extending_htmx (wip). Spent ages messing around with the htmx instillation (kept getting a 405 error) - the actual bug was not updating the server side methods in the app routes. 
 
 I have been / am enjoying learning a few other things along the
 way, including:
