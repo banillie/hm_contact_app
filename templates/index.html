@@ -2,36 +2,56 @@
 
 {% block content %}
 
-    <form action="/contacts" method="get" class="tool-bar">
-        <label for="search">Search Term</label>
-        <input id="submit" type="search" name="q" value="{{ request.args.get('q') or '' }}"/>
-        <input type="submit" value="search"/>
-    </form>
+    <div id="main">
+        <form>
+            <label for="search">Search Contacts:</label>
+            <input id="search" name="q" type="search" placeholder="Search Contacts">
+            <button hx-get="/contacts"
+                    hx-target="tbody"
+                    hx-include="#search"
+                    hx-select="tbody > tr">
+                Search The Contacts
+            </button>
 
-    <table>
-        <thead>
-        <tr>
-            <th>First</th>
-            <th>Last</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for contact in contacts %}
+        </form>
+        <table>
+            <thead>
             <tr>
-                <td>{{ contact.first }}</td>
-                <td>{{ contact.last }}</td>
-                <td>{{ contact.phone }}</td>
-                <td>{{ contact.email }}</td>
-                <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
-                    <a href="/contacts/{{ contact.id }}">View</a></td>
+                <th>First</th>
+                <th>Last</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th></th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <p>
-        <a href="/contacts/new">Add Contact</a>
-    </p>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.first }}</td>
+                    <td>{{ contact.last }}</td>
+                    <td>{{ contact.phone }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
+                        <a href="/contacts/{{ contact.id }}">View</a></td>
+                </tr>
+            {% endfor %}
+            {% if contacts|length == 10 %}
+                <tr>
+                    <td colspan="5" style="text-align: center">
+                    <span hx-target="closest tr"
+                          hx-trigger="revealed"
+                          hx-swap="outerHTML"
+                          hx-select="tbody > tr"
+                          hx-get="/contacts?page={{ page + 1 }}">
+                        Loading More...
+                    </span>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        <p>
+            <a href="/contacts/new">Add Contact</a>
+        </p>
+    </div>
 {% endblock %}
