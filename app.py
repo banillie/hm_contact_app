@@ -69,3 +69,17 @@ def contacts_delete(contact_id=0):
     contact.delete()
     flash("Deleted Contact!")
     return redirect("/contacts", 303)
+
+
+@app.route("/contacts/<contact_id>/email", methods=["GET"])
+def contacts_email_get(contact_id=0):
+    c = Contact.find(contact_id)
+    # finding strange behaviour with the value that is rendered in the client. I need to restart the
+    # client before the saved email in the db is rendered. probably because the contact's email is being
+    # overwritten here and not saved.
+    c.email = request.args.get('email')
+    c.validate()
+    return c.errors.get('email') or ""
+
+
+

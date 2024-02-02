@@ -35,9 +35,14 @@ class Contact:
     def validate(self):
         if not self.email:
             self.errors['email'] = "Email Required"
-        existing_contact = next(filter(lambda c: c.id != self.id and c.email == self.email, Contact.db.values()), None)
-        if existing_contact:
-            self.errors['email'] = "Email Must Be Unique"
+        elif "@" not in self.email: # basic have been improved.
+            self.errors['email'] = "Invalid Email Format: @ is required"  # Specify the error message
+        else:
+            existing_contact = next(filter(lambda c: c.id != self.id and c.email == self.email, Contact.db.values()),
+                                    None)
+            if existing_contact:
+                self.errors['email'] = "Email Must Be Unique"
+
         return len(self.errors) == 0
 
     def save(self):
