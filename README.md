@@ -10,7 +10,9 @@ Run this in the flask shell.
 
 Completed branches:
 - web_1.0_application. This is the application in it pre-htmx state. 
-- extending_htmx (wip). Spent ages messing around with the htmx instillation (kept getting a 405 error) - the actual bug was not updating the server side methods in the app routes. 
+- extending_htmx (wip). 
+  - Spent ages messing around with the htmx instillation (kept getting a 405 error) - the actual bug was not updating the server side methods in the app routes. 
+  - I found the app.py code for the inline validation for email values needed re-factoring because the contact email was overwritten with the value from the request's query string, without persisting the change to the database. 
 
 I have been / am enjoying learning a few other things along the
 way, including:
