@@ -89,16 +89,13 @@ def validate_email(email, contact):
             "email"
         ] = "Invalid Email Format: @ is required"  # Specify the error message
     else:
-        # Here.
-        existing_contact = next(
-            filter(
-                lambda contact: contact.id != contact.id and contact.email == email,
-                Contact.db.values(),
-            ),
-            None,
-        )
-        if existing_contact:
-            contact.errors["email"] = "Email Must Be Unique"
+        existing_contacts = Contact.db.values()
+        for v in existing_contacts:
+            if v.email == email:
+                if v.id == contact.id:
+                    pass
+                else:
+                    contact.errors["email"] = "Email Must Be Unique"
 
     return len(contact.errors) == 0
 
