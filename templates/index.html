@@ -2,49 +2,51 @@
 
 {% block content %}
 
-    <div id="main">
+<div id="main">
 
-        <label for="search">Search Contacts:</label>
-        <input id="search" name="q" type="search" placeholder="Search Contacts">
-        <button hx-post="/contacts" hx-target="#main" hx-include="#search">
-            Search The Contacts
-        </button>
+    <label for="search">Search Contacts:</label>
+    <input id="search" name="q" type="search" placeholder="Search Contacts">
+    <button hx-post="/contacts" hx-target="#main" hx-include="#search">
+        Search The Contacts
+    </button>
 
-        <table>
-            <thead>
+    <table>
+        <thead>
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
             <tr>
-                <th>First</th>
-                <th>Last</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th></th>
+                <td>{{ contact.first }}</td>
+                <td>{{ contact.last }}</td>
+                <td>{{ contact.phone }}</td>
+                <td>{{ contact.email }}</td>
+                <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
+                    <a href="/contacts/{{ contact.id }}">View</a></td>
             </tr>
-            </thead>
-            <tbody>
-            {% for contact in contacts %}
-                <tr>
-                    <td>{{ contact.first }}</td>
-                    <td>{{ contact.last }}</td>
-                    <td>{{ contact.phone }}</td>
-                    <td>{{ contact.email }}</td>
-                    <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
-                        <a href="/contacts/{{ contact.id }}">View</a></td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <div>
-        <span style="float: right">
-            {% if page > 1 %}
-                <a href="/contacts?page={{ page - 1 }}">Previous</a>
-            {% endif %}
-            {% if contacts|length == 10 %}
-                <a href="/contacts?page={{ page + 1 }}">Next</a>
-            {% endif %}
-        </span>
-        </div>
-        <p>
-            <a href="/contacts/new">Add Contact</a>
-        </p>
-    </div>
+        {% endfor %}
+        {% if contacts|length == 10 %}
+            <tr>
+                <td colspan="5" style="text-align: center">
+                    <button hx-target="closest tr"
+                            hx-swap="outerHTML"
+                            hx-select="tbody > tr"
+                            hx-get="/contacts?page={{ page + 1 }}">
+                        Load More
+                    </button>
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <p>
+        <a href="/contacts/new">Add Contact</a>
+    </p>
+</div>
 {% endblock %}
