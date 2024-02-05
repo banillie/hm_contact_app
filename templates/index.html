@@ -3,16 +3,16 @@
 {% block content %}
 
     <div id="main">
-        <form>
-            <label for="search">Search Contacts:</label>
-            <input id="search" name="q" type="search" placeholder="Search Contacts">
-            <button hx-get="/contacts"
-                    hx-target="tbody"
-                    hx-include="#search"
-                    hx-select="tbody > tr">
-                Search The Contacts
-            </button>
-
+        <form action="/contacts" method="get" class="tool-bar">
+            <label for="search">Search Term</label>
+            <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"
+                   hx-get="/contacts"
+                   hx-trigger="search, keyup delay:200ms changed"
+                   hx-target="tbody"
+                   hx-push-url="true"
+                   hx-indicator="#spinner"/>
+            <img id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg" alt="Request In Flight..."/>
+            <input type="submit" value="Search"/>
         </form>
         <table>
             <thead>
@@ -25,16 +25,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for contact in contacts %}
-                <tr>
-                    <td>{{ contact.first }}</td>
-                    <td>{{ contact.last }}</td>
-                    <td>{{ contact.phone }}</td>
-                    <td>{{ contact.email }}</td>
-                    <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
-                        <a href="/contacts/{{ contact.id }}">View</a></td>
-                </tr>
-            {% endfor %}
+            {% include 'rows.html' %}
             {% if contacts|length == 10 %}
                 <tr>
                     <td colspan="5" style="text-align: center">

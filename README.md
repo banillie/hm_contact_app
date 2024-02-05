@@ -12,6 +12,7 @@ Completed branches:
 
 - web_1.0_application. This is the application in it pre-htmx state. (Chapters 1-3)
 - extending_htmx. (Chapters 4-5)
+    - created a new html template called contact_values to make code more DRY. 
     - Spent ages messing around with the htmx instillation (kept getting a 405 error) - the actual bug was not updating
       the server side methods in the app routes.
     - I found the app.py code for the inline validation for email values needed re-factoring because the contact email
