@@ -20,7 +20,8 @@ Completed branches:
     - I found the search button functionality v hard. not very well explained in the book. things I did to make it work:
       used hx-get not hx-post otherwise 'q' was a None value. used of `hx-select="tbody > tr"` on button to ensure the
       tbody was being replaced properly. (You learn hx-select in the infinite scroll.)
-- more htmx patterns (coming next!)
+- more htmx patterns (wip). 
+    - implementing the search via HTTP request headers. The book explains the above approach isn't the most efficient. 
 
 I have been / am enjoying learning a few other things along the
 way, including:
