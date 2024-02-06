@@ -86,8 +86,11 @@ def contacts_edit_post(contact_id=0):
 def contacts_delete(contact_id=0):
     contact = Contact.find(contact_id)
     contact.delete()
-    flash("Deleted Contact!")
-    return redirect("/contacts", 303)
+    if request.headers.get('HX-Trigger') == 'delete-btn':
+        flash("Deleted Contact!")
+        return redirect("/contacts", 303)
+    else:
+        return ""
 
 
 def validate_email(email, contact):
