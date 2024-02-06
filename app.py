@@ -93,6 +93,17 @@ def contacts_delete(contact_id=0):
         return ""
 
 
+@app.route("/contacts/", methods=["DELETE"])
+def contacts_delete_all():
+    contact_ids = list(map(int, request.form.getlist("selected_contact_ids")))
+    for contact_id in contact_ids:
+        contact = Contact.find(contact_id)
+        contact.delete()
+    flash("Deleted Contacts!")
+    contacts_set = Contact.all()
+    return render_template("index.html", contacts=contacts_set)
+
+
 def validate_email(email, contact):
     if email is None:
         contact.errors["email"] = "Email Required"

@@ -3,7 +3,7 @@ import random
 from contacts_model import Contact
 
 
-def create_random_contacts(num_contacts=20):
+def create_random_contacts(num_contacts=50):
     """helper function to run in the flask shell to create a specified
     number of random contacts with UK phone numbers using faker library."""
 
