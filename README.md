@@ -28,6 +28,8 @@ Completed branches:
     - Lazy loading. 
     - Inline deleting with css transition. 
     - Bulk deleting. 
+- archive ui. (Chapter 7)
+    - Data download progress bar with one bit of hyperscript at the end. 
 
 Other things I am enjoying learning along the way:
 - Flask (this is the first time I've used it)
