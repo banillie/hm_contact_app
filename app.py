@@ -1,12 +1,38 @@
 import secrets
 from flask import Flask, redirect, render_template, request, flash, jsonify, send_file
-from contacts_model import Contact
+from contacts_model import Contact, Archiver
 
 # import time
 
 Contact.load_db()
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
+
+
+@app.route("/contacts/archive", methods=["POST"])
+def start_archive():
+    archiver = Archiver.get()
+    archiver.run()
+    return render_template("archive_ui.html", archiver=archiver)
+
+
+@app.route("/contacts/archive", methods=["GET"])
+def archive_status():
+    archiver = Archiver.get()
+    return render_template("archive_ui.html", archiver=archiver)
+
+
+@app.route("/contacts/archive/file", methods=["GET"])
+def archive_content():
+    manager = Archiver.get()
+    return send_file(manager.archive_file(), "archive.json", as_attachment=True)
+
+
+@app.route("/contacts/archive", methods=["DELETE"])
+def reset_archive():
+    archiver = Archiver.get()
+    archiver.reset()
+    return render_template("archive_ui.html", archiver=archiver)
 
 
 @app.route("/")
@@ -24,7 +50,7 @@ def contacts():
             return render_template("rows.html", contacts=contacts_set, page=page)
     else:
         contacts_set = Contact.all(page)
-    return render_template("index.html", contacts=contacts_set, page=page)
+    return render_template("index.html", contacts=contacts_set, page=page, archiver=Archiver.get())
 
 
 @app.route("/contacts/count")
