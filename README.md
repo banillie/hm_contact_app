@@ -30,7 +30,7 @@ Completed branches:
     - Bulk deleting. 
 - archive ui. (Chapter 7)
     - Data download progress bar with one bit of hyperscript at the end. 
-- client-side scripting (Chapters 8 - ) wip
+- tricks of masters (Chapters 8 - ) wip
   - options button with vanilla JS and Reasonable System for JavaScript Structure (RSJS). 
   - upto Alpine.js section. 
 
