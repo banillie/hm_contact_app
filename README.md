@@ -30,6 +30,9 @@ Completed branches:
     - Bulk deleting. 
 - archive ui. (Chapter 7)
     - Data download progress bar with one bit of hyperscript at the end. 
+- client-side scripting (Chapters 8 - ) wip
+  - options button with vanilla JS and Reasonable System for JavaScript Structure (RSJS). 
+  - upto Alpine.js section. 
 
 Other things I am enjoying learning along the way:
 - Flask (this is the first time I've used it)
@@ -37,3 +40,8 @@ Other things I am enjoying learning along the way:
 - What raw html can do for you anyway! Going beyond this - learning a deeper appreciation of how html works and it's
   tags. This goes hand in hand with how htmx works.
 - The flask flash functionality to flash a new message to the next request. 
+- event handlers, especially for hxtm events. 
+- reasonable system for javascript structure (RSJS)
+- `dunking on JavaScript is not the aim of the htmx project. The goal of htmx is not less JavaScript, but less code, more readable and hypermedia-friendly code.`
+- `simply listing “best practices” is rarely convincing or edifying. To be honest, it’s boring.`
+- `No code is faster than no code.` Merb. 
