@@ -32,7 +32,8 @@ Completed branches:
     - Data download progress bar with one bit of hyperscript at the end. 
 - tricks of masters (Chapters 8 - ) wip
   - options button with vanilla JS and Reasonable System for JavaScript Structure (RSJS). 
-  - upto Alpine.js section. 
+  - Alpine.js section, bulk action tool bar. app route needs to be amended to work properly. pull request to main repo required. 
+  - 
 
 Other things I am enjoying learning along the way:
 - Flask (this is the first time I've used it)
